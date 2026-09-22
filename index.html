@@ -1,1 +1,1284 @@
-<!DOCTYPE html></html>
+<!DOCTYPE html> <!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>เพจของฉัน 🍑</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --peach:#FFD9C7;
+  --peach-deep:#FF9E7A;
+  --sage:#CFE3D0;
+  --sage-deep:#7FAE84;
+  --cream:#FFFBF6;
+  --card:#FFFFFF;
+  --ink:#4A3F3B;
+  --ink-soft:#8A7A73;
+  --line:#F0E4DC;
+  --pink:#FFC9DE;
+  --yellow:#FFE9A8;
+  --lav:#DCD3F5;
+  --blue:#CFE7F5;
+  --danger:#F19191;
+  --shadow:0 6px 18px rgba(180,140,110,0.12);
+}
+*{box-sizing:border-box;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%;}
+body{
+  height:100%;
+  margin:0;
+  font-family:'Sarabun',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --cream:#2B2422; --card:#3A312E; --ink:#F3E9E3; --ink-soft:#C9B8B0; --line:#4A3E3A;
+    --peach:#7A4C3A; --peach-deep:#FF9E7A; --sage:#3A4A3D; --sage-deep:#9BD1A0;
+    --pink:#5C3A4A; --yellow:#5C4F2C; --lav:#3C3560; --blue:#2C4652;
+  }
+}
+:root[data-theme="dark"]{
+  --cream:#2B2422; --card:#3A312E; --ink:#F3E9E3; --ink-soft:#C9B8B0; --line:#4A3E3A;
+  --peach:#7A4C3A; --peach-deep:#FF9E7A; --sage:#3A4A3D; --sage-deep:#9BD1A0;
+  --pink:#5C3A4A; --yellow:#5C4F2C; --lav:#3C3560; --blue:#2C4652;
+}
+h1,h2,h3,.brand,.tabbtn,.bignum{font-family:'Baloo 2',sans-serif;}
+.app{max-width:520px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;}
+header{
+  padding:14px 16px 8px;
+  padding-top:calc(14px + env(safe-area-inset-top,0px));
+  position:sticky;top:0;z-index:20;background:var(--cream);
+  border-bottom:1px solid var(--line);
+}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.brand{font-size:20px;font-weight:700;color:var(--peach-deep);}
+.datepick{font-size:13px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 10px;}
+.progress-mini{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 16px 12px;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tabbtn{
+  flex:0 0 auto;padding:8px 14px;border-radius:999px;border:none;
+  background:var(--card);color:var(--ink-soft);font-weight:600;font-size:14px;
+  cursor:pointer;white-space:nowrap;border:1px solid var(--line);
+}
+.tabbtn.active{background:var(--peach-deep);color:#fff;border-color:var(--peach-deep);}
+main{flex:1;padding:8px 16px 100px;overflow-x:hidden;}
+.card{
+  background:var(--card);border-radius:20px;padding:16px;margin-bottom:14px;
+  box-shadow:var(--shadow);
+}
+.card h3{margin:0 0 10px;font-size:16px;display:flex;align-items:center;gap:8px;}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.item{
+  display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);
+}
+.item:last-child{border-bottom:none;}
+.chk{
+  width:26px;height:26px;flex:0 0 26px;border-radius:9px;border:2px solid var(--peach-deep);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--card);
+  font-size:15px;color:transparent;margin-top:1px;
+}
+.chk.done{background:var(--peach-deep);color:#fff;}
+.chk.small{width:20px;height:20px;flex:0 0 20px;border-radius:7px;font-size:12px;}
+.item .txt{flex:1;min-width:0;}
+.item .ttl{font-weight:600;font-size:14.5px;}
+.item .ttl.done{text-decoration:line-through;color:var(--ink-soft);}
+.item .sub{font-size:12.5px;color:var(--ink-soft);margin-top:1px;}
+.time-badge{font-size:11.5px;color:var(--sage-deep);font-weight:700;background:var(--sage);padding:3px 8px;border-radius:8px;flex:0 0 auto;}
+.editbtn{background:none;border:none;color:var(--ink-soft);font-size:16px;cursor:pointer;padding:4px;flex:0 0 auto;}
+.subitem{display:flex;align-items:center;gap:8px;margin-top:8px;padding-left:6px;}
+.subitem input[type=number]{
+  width:64px;padding:5px 7px;border-radius:8px;border:1px solid var(--line);font-size:13px;background:var(--cream);color:var(--ink);
+}
+.pillbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+.wpill{
+  width:44px;height:44px;border-radius:50%;border:2px solid var(--blue);background:var(--card);
+  display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;color:var(--ink-soft);
+}
+.wpill.done{background:var(--blue);color:#20586b;}
+.progwrap{background:var(--line);border-radius:999px;height:14px;overflow:hidden;margin-top:6px;}
+.progfill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--peach-deep),var(--pink));transition:width .3s;}
+.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.stat{background:var(--cream);border-radius:14px;padding:10px 12px;}
+.stat .bignum{font-size:20px;font-weight:700;}
+.stat .lbl{font-size:11.5px;color:var(--ink-soft);}
+button.primary{
+  background:var(--peach-deep);color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;
+  font-size:14px;cursor:pointer;font-family:'Sarabun',sans-serif;
+}
+button.ghost{
+  background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:9px 14px;
+  font-weight:600;font-size:13.5px;cursor:pointer;font-family:'Sarabun',sans-serif;
+}
+input,select,textarea{
+  font-family:'Sarabun',sans-serif;background:var(--cream);border:1px solid var(--line);border-radius:10px;
+  padding:9px 10px;font-size:14px;color:var(--ink);width:100%;
+}
+label{font-size:12.5px;color:var(--ink-soft);display:block;margin:8px 0 4px;}
+.foodgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.fbtn{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:10px;text-align:left;}
+.fbtn .fname{font-weight:700;font-size:13.5px;}
+.fbtn .fmeta{font-size:11.5px;color:var(--ink-soft);margin:2px 0 6px;}
+.fbtn .frow{display:flex;gap:6px;align-items:center;}
+.fbtn input{width:60px;padding:6px 7px;font-size:12.5px;}
+.fbtn button{flex:1;padding:6px;font-size:12px;}
+.foodlogitem{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+.foodlogitem:last-child{border-bottom:none;}
+.del{background:none;border:none;color:var(--danger);font-size:15px;cursor:pointer;}
+.fab{
+  position:fixed;right:20px;bottom:calc(24px + env(safe-area-inset-bottom,0px));
+  width:56px;height:56px;border-radius:50%;background:var(--peach-deep);color:#fff;font-size:26px;
+  border:none;box-shadow:0 8px 20px rgba(255,120,80,0.4);cursor:pointer;z-index:30;
+  max-width:calc(520px - 40px);
+}
+.modal-bg{
+  position:fixed;inset:0;background:rgba(60,40,30,0.35);display:none;align-items:flex-end;justify-content:center;z-index:100;
+}
+.modal-bg.open{display:flex;}
+.modal{
+  background:var(--card);width:100%;max-width:520px;border-radius:22px 22px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));
+  max-height:85vh;overflow-y:auto;
+}
+.modal h3{margin-top:0;}
+.daychk-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px;}
+.daychk{
+  width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--cream);
+  display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;color:var(--ink-soft);
+}
+.daychk.sel{background:var(--sage-deep);color:#fff;border-color:var(--sage-deep);}
+.modal-actions{display:flex;gap:8px;margin-top:16px;}
+.badge-cat{font-size:10.5px;padding:2px 8px;border-radius:7px;background:var(--lav);color:#4b3f7a;font-weight:700;}
+.section-note{font-size:12.5px;color:var(--ink-soft);background:var(--cream);border-radius:10px;padding:8px 10px;margin-bottom:10px;}
+.hist{font-size:13px;padding:7px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;}
+.hist:last-child{border-bottom:none;}
+.linkbtn{background:none;border:none;color:var(--peach-deep);font-weight:700;font-size:13px;cursor:pointer;}
+::-webkit-scrollbar{width:0;height:0;}
+.empty{color:var(--ink-soft);font-size:13.5px;text-align:center;padding:16px 0;}
+.saved-indicator{font-size:10.5px;color:var(--ink-soft);text-align:right;padding:0 16px 4px;}
+.toast{
+  position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);
+  background:var(--ink);color:var(--cream);padding:8px 16px;border-radius:999px;font-size:12.5px;
+  opacity:0;pointer-events:none;transition:opacity .25s;z-index:200;max-width:80%;text-align:center;
+}
+.toast.show{opacity:0.92;}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="toprow">
+    <div class="brand">🍑 เพจของฉัน</div>
+    <input type="date" id="dateInput" class="datepick">
+  </div>
+  <div class="progress-mini" id="dayProgress"></div>
+  <div class="tabs" id="tabs"></div>
+  <div class="saved-indicator" id="savedIndicator"></div>
+</header>
+<main id="main"></main>
+</div>
+<button class="fab" id="fabBtn">+</button>
+<div class="modal-bg" id="modalBg"><div class="modal" id="modalBody"></div></div>
+<div class="toast" id="toast"></div>
+
+
+<script>
+/* ====================== DATA ====================== */
+const PLAN_START = '2026-09-21';
+const PLAN_END = '2026-11-18';
+const DAY_LABELS = {MO:'จ',TU:'อ',WE:'พ',TH:'พฤ',FR:'ศ',SA:'ส',SU:'อา'};
+const DAY_ORDER = ['MO','TU','WE','TH','FR','SA','SU'];
+const CATS = {
+  vitamin:{label:'วิตามิน',color:'lav'}, water:{label:'น้ำ',color:'blue'},
+  cardio:{label:'คาร์ดิโอ',color:'sage'}, weight:{label:'เวท',color:'sage'},
+  skincare:{label:'สกินแคร์',color:'pink'}, food:{label:'อาหาร',color:'peach'},
+  work:{label:'งาน',color:'yellow'}, english:{label:'ภาษา',color:'blue'}, laser:{label:'เลเซอร์',color:'pink'}, hair:{label:'ผม',color:'sage'}, pcos:{label:'PCOS',color:'lav'}, other:{label:'อื่นๆ',color:'lav'}
+};
+const DEFAULT_FOOD_DB = [
+  {id:'chicken_breast',name:'อกไก่ (ต้ม/ปั่น)',unit:'g',mode:'per100',per100:{p:31,c:165},def:220},
+  {id:'chicken_wing',name:'ไก่ ปีก (ไม่ติดหนัง)',unit:'g',mode:'per100',per100:{p:27,c:170},def:150},
+  {id:'chicken_thigh',name:'ไก่ น่องใหญ่/สะโพก (ไม่ติดหนัง)',unit:'g',mode:'per100',per100:{p:26,c:179},def:150},
+  {id:'chicken_drumstick',name:'ไก่ น่องเล็ก (ไม่ติดหนัง)',unit:'g',mode:'per100',per100:{p:28,c:172},def:150},
+  {id:'pork_tender',name:'หมูสันใน',unit:'g',mode:'per100',per100:{p:26,c:143},def:250},
+  {id:'pork_loin',name:'หมูสันนอก',unit:'g',mode:'per100',per100:{p:27,c:200},def:250},
+  {id:'pork_collar',name:'หมูสันคอ',unit:'g',mode:'per100',per100:{p:19,c:260},def:200},
+  {id:'fish_white',name:'ปลาเนื้อขาว (ปลานิล/ปลากะพง)',unit:'g',mode:'per100',per100:{p:26,c:128},def:200},
+  {id:'fish_salmon',name:'ปลาแซลมอน',unit:'g',mode:'per100',per100:{p:25,c:208},def:150},
+  {id:'whey',name:'Whey Protein (1 scoop)',unit:'scoop',mode:'serving',serving:{p:30,c:130},def:1},
+  {id:'yogurt',name:'Greek yogurt',unit:'g',mode:'per100',per100:{p:10,c:59},def:100},
+  {id:'egg',name:'ไข่ไก่ (ต่อฟอง≈50g)',unit:'g',mode:'per100',per100:{p:12,c:140},def:50},
+  {id:'tofu',name:'เต้าหู้',unit:'g',mode:'per100',per100:{p:8,c:76},def:100},
+  {id:'rice',name:'ข้าวสุก',unit:'g',mode:'per100',per100:{p:2.7,c:130},def:100},
+  {id:'sweetpotato',name:'มันหวาน',unit:'g',mode:'per100',per100:{p:1.6,c:86},def:150},
+  {id:'fruit',name:'ผลไม้ (1 portion≈150g)',unit:'g',mode:'per100',per100:{p:0.7,c:60},def:150},
+];
+function foodMacros(f, qty){
+  if(f.mode==='serving') return {p: f.serving.p*qty, c: f.serving.c*qty};
+  return {p: f.per100.p*qty/100, c: f.per100.c*qty/100};
+}
+let foodSearchTerm = '';
+const DEFAULT_DEBTS = [
+  {id:'debt_kyd', name:'กยศ', total:182000, monthlyPayment:2500, remaining:182000, payments:[]},
+  {id:'debt_pang', name:'หนี้พี่แป้ง', total:30000, monthlyPayment:10000, remaining:30000, payments:[]},
+];
+const DEFAULT_EXPENSES = [
+  {id:'exp_net', name:'ค่าเน็ต', amount:1000},
+  {id:'exp_fit', name:'ค่าฟิตเนส', amount:1000},
+  {id:'exp_movie', name:'ค่าดูหนัง', amount:300},
+  {id:'exp_apps', name:'ค่าแอพรายเดือน', amount:238},
+  {id:'exp_sso', name:'ค่าประกันสังคม', amount:750},
+  {id:'exp_fund', name:'ค่ากองทุน', amount:300},
+  {id:'exp_save', name:'เก็บบัญชีคู่', amount:1000},
+];
+const ENGLISH_CYCLE = [
+  {t:'ฟัง Podcast สั้น + Shadowing ตามประโยค'},
+  {t:'พูด Roleplay สถานการณ์ในชีวิตประจำวัน'},
+  {t:'คำศัพท์ธีมใหม่ 15 คำ + แต่งประโยคพูดออกเสียง'},
+  {t:'ฟังข่าว/คลิปสั้น แล้วสรุปเป็นคำพูดของตัวเอง'},
+  {t:'ฝึกพูดคุยกับแอพ/AI 1.3 ชม โฟกัสความคล่อง'},
+  {t:'ฟังเพลง/ซีรีส์ จับคำศัพท์ที่ได้ยินซ้ำ'},
+  {t:'ทบทวนคำศัพท์รวมของสัปดาห์ + พูดสรุป 5 นาที'},
+];
+const DEFAULT_SCHEDULE = [
+  {id:'wake',time:'07:00',title:'ตื่นนอน + วิตามินท้องว่าง',cat:'vitamin',days:'all',
+    subs:[{id:'myo1',t:'Myo-inositol (ท้องว่างได้ — ถ้าแสบท้องให้ย้ายไปกินพร้อมมื้อ 1 แทน)'}]},
+  {id:'w1',time:'07:15',title:'ดื่มน้ำแก้วที่ 1 (500 ml)',cat:'water',days:'all'},
+  {id:'cardio',time:'07:30',title:'คาร์ดิโอเช้า: เดินชัน Incline 12',cat:'cardio',days:'all',notes:'30–40 นาที • วันอาทิตย์เดินเบาๆ/พักได้'},
+  {id:'skam',time:'08:00',title:'สกินแคร์เช้า + กันแดด SPF50+',cat:'skincare',days:'all'},
+  {id:'minoxidil',time:'08:15',title:'ทาไมนอกซิดิล (ผม)',cat:'hair',days:'all',
+    notes:'⚠️ เป็นพิษร้ายแรงต่อแมว: ล้างมือให้สะอาดหลังทาทุกครั้ง รอผมแห้งสนิทก่อนให้แมวเข้าใกล้/นอนหมอนเดียวกัน เก็บขวดให้พ้นจากที่แมวเข้าถึง'},
+  {id:'meal1',time:'09:00',title:'มื้อ 1: อกไก่ปั่น + Greek yogurt + Whey',cat:'food',days:'all'},
+  {id:'vitam',time:'09:15',title:'วิตามินหลังมื้อ 1',cat:'vitamin',days:'all',
+    subs:[
+      {id:'vitd',t:'Vitamin D (พร้อมอาหารมีไขมัน)'},
+      {id:'omega3',t:'Omega-3 (พร้อมอาหาร)'},
+      {id:'astax',t:'Astaxanthin (พร้อมอาหารมีไขมัน)'},
+      {id:'greentea',t:'Green tea extract (พร้อมอาหาร)'},
+      {id:'probiotic',t:'โปรไบโอติก (พร้อม/หลังอาหาร ลดผลจากกรดกระเพาะ)'},
+    ]},
+  {id:'w2',time:'09:30',title:'ดื่มน้ำแก้วที่ 2 (500 ml)',cat:'water',days:'all'},
+  {id:'workstart',time:'10:00',title:'เริ่มงาน',cat:'work',days:'all'},
+  {id:'vitlunch',time:'12:00',title:'วิตามินหลังมื้อ 2',cat:'vitamin',days:'all',
+    subs:[{id:'vitc',t:'Vitamin C'},{id:'zinc',t:'Zinc (พร้อมอาหาร ลดคลื่นไส้)'}]},
+  {id:'w3',time:'12:30',title:'ดื่มน้ำแก้วที่ 3 (500 ml)',cat:'water',days:'all'},
+  {id:'meal2',time:'13:00',title:'มื้อ 2: ชาบูหมูสันใน/สันนอก + ผัก/เห็ด/เต้าหู้',cat:'food',days:'all'},
+  {id:'w4',time:'15:00',title:'ดื่มน้ำแก้วที่ 4 (500 ml)',cat:'water',days:'all'},
+  {id:'destress',time:'16:30',title:'พักคลายเครียด 10–15 นาที',cat:'pcos',days:'all',
+    notes:'หายใจลึก/เดินเล่น/ฟังเพลง — ความเครียดสะสมทำให้อินซูลิน/ฮอร์โมนแปรปรวนขึ้น'},
+  {id:'workend',time:'18:00',title:'เลิกงาน',cat:'work',days:'all'},
+  {id:'eng',time:'18:30',title:'เรียนภาษาอังกฤษ (1.3 ชม เน้นฟัง-พูด)',cat:'english',days:'all'},
+  {id:'w5',time:'19:00',title:'ดื่มน้ำแก้วที่ 5 (500 ml)',cat:'water',days:'all'},
+  {id:'laserhome',time:'19:30',title:'เลเซอร์ขนที่บ้าน (ทุกวันอาทิตย์)',cat:'laser',days:['SU'],
+    notes:'ก่อนทำ: ผิวสะอาดแห้ง ไม่มีครีมตกค้าง • ทำหลังอาบน้ำ • ห้ามแว็กซ์/ถอนขนใกล้วันทำ',
+    subs:[{id:'legs',t:'ขา'},{id:'underarm',t:'รักแร้'},{id:'bikini',t:'บิกินี่'}]},
+  {id:'skpm',time:'21:30',title:'สกินแคร์กลางคืน (Active แยกโซนตามวัน)',cat:'skincare',days:'all'},
+  {id:'legsA',time:'20:00',title:'เวทเย็น: LEGS A',cat:'weight',days:['MO','FR'],
+    subs:[{id:'hipthrust',t:'Hip Thrust 4×8-12'},{id:'legpress',t:'Leg Press 3×10-15'},{id:'rdl',t:'Romanian Deadlift 3×8-12'},{id:'legcurl',t:'Leg Curl 3×10-15'},{id:'hipabd',t:'Hip Abduction 3×15-20'}]},
+  {id:'legsB',time:'20:00',title:'เวทเย็น: LEGS B + ABS',cat:'weight',days:['WE'],
+    subs:[{id:'hipthrust2',t:'Hip Thrust 3×10-12'},{id:'legpress2',t:'Leg Press 3×10-15'},{id:'bulgarian',t:'Bulgarian Split Squat 3×8-12/ข้าง'},{id:'legcurl2',t:'Leg Curl 3×10-15'},{id:'hipabd2',t:'Hip Abduction 3×15-20'},{id:'reverse',t:'Reverse Crunch 3×12-15'},{id:'cablecrunch',t:'Cable Crunch 3×12-15'},{id:'plank',t:'Plank 2×30-60 วิ'}]},
+  {id:'vitpm',time:'21:00',title:'วิตามินหลังเย็น',cat:'vitamin',days:'all',notes:'Creatine กินตอนไหนก็ได้ — ความสม่ำเสมอสำคัญกว่าจังหวะเวลา',
+    subs:[{id:'creatine',t:'Creatine (พร้อม/หลังอาหาร หรือใกล้เวลาเวทก็ได้)'},{id:'myo2',t:'Myo-inositol ครั้งที่ 2'}]},
+  {id:'mag',time:'23:00',title:'ก่อนนอน',cat:'vitamin',days:'all',
+    subs:[{id:'magnesium',t:'Magnesium'}]},
+  {id:'sleep',time:'24:00',title:'เข้านอน',cat:'other',days:'all'},
+];
+// เช็คแล้วปรับลำดับใหม่ให้ไม่มี "Retinol/Glycolic" ชนกันคืนติดกัน (ของเดิมมี Retinol ศุกร์ชนกับ Glycolic เสาร์ - เสี่ยงหน้า/ผิวพัง)
+const FACE_ROUTINE = {MO:'Acnetin-A 0.05% → B5+ → Moisturizer',TU:'Recovery → B5+ → Moisturizer',WE:'Skinoren/Azelaic → B5+ → Moisturizer',TH:'Acnetin-A 0.05% → B5+ → Moisturizer',FR:'Recovery → B5+ → Moisturizer',SA:'BHA 2% → B5+ → Moisturizer',SU:'Skinoren/Azelaic → B5+ → Moisturizer'};
+// ตัว = แขน/ขา (ไม่รวมก้น/จักแร้/ขาหนีบ/หัวนม) — ย้าย Glycolic ให้ห่างจาก Retinol ทั้ง 2 รอบ
+const LIMB_ROUTINE = {MO:'Retinol 0.5% → Urea 5%',TU:'Azelaic acid → Urea 5%',WE:'Glycolic Acid 7% → Urea 5%',TH:'Urea 5% เท่านั้น (คืนพัก)',FR:'Retinol 0.5% → Urea 5%',SA:'Urea 5% เท่านั้น (คืนพัก)',SU:'BHA 2% เฉพาะจุดขนคุด → Urea 5%'};
+const BUTT_ROUTINE = {MO:'Retinol 0.5% → Urea 5%',TU:'Urea 5% เท่านั้น (คืนพัก)',WE:'Glycolic Acid 7% → Urea 5%',TH:'Urea 5% เท่านั้น (คืนพัก)',FR:'Retinol 0.5% → Urea 5%',SA:'Urea 5% เท่านั้น (คืนพัก)',SU:'BHA 2% เฉพาะจุดตุ่ม/ขนคุด → Urea 5%'};
+// จักแร้ + ขาหนีบ: ผิวบางไวต่อการระคายเคือง ไม่ใช้ Retinol/Glycolic เลย
+const UNDERARM_ROUTINE = {MO:'CeraVe Urea 5% เท่านั้น',TU:'Azelaic acid บางๆ → Urea 5%',WE:'Urea 5% (BHA 2% เฉพาะจุดตุ่ม 1 ครั้ง/สัปดาห์ถ้ามี)',TH:'CeraVe Urea 5% เท่านั้น',FR:'Azelaic acid บางๆ → Urea 5%',SA:'CeraVe Urea 5% เท่านั้น',SU:'Azelaic acid บางๆ → Urea 5%'};
+// หัวนม: ผิวบางที่สุดในร่างกาย งดสารผลัดผิวแรงทุกชนิด ใช้ active เบามากได้แค่สัปดาห์ละครั้ง
+const NIPPLE_ROUTINE = {MO:'มอยส์เจอไรเซอร์/บาล์มปกป้องผิวอ่อนโยนเท่านั้น',TU:'มอยส์เจอไรเซอร์อ่อนโยนเท่านั้น',WE:'Azelaic acid บางเบามาก (ถ้าต้องการลดรอยดำ) → มอยส์เจอไรเซอร์',TH:'มอยส์เจอไรเซอร์อ่อนโยนเท่านั้น',FR:'มอยส์เจอไรเซอร์อ่อนโยนเท่านั้น',SA:'มอยส์เจอไรเซอร์อ่อนโยนเท่านั้น',SU:'มอยส์เจอไรเซอร์อ่อนโยนเท่านั้น'};
+// เลเซอร์ที่บ้านทำทุกวันอาทิตย์ (ขา/รักแร้/บิกินี่) — งดสารผลัดผิวบริเวณนั้น 2 วันแรกหลังทำ (อาทิตย์-จันทร์)
+function isNearLaser(dateStr){ const dow = parseDate(dateStr).getDay(); return dow===0 || dow===1; }
+const LASER_CAUTION = 'งดสารผลัดผิว (Retinol/BHA/Glycolic/Azelaic) บริเวณที่เพิ่งทำเลเซอร์ — ใช้ Urea 5% เท่านั้น + เลี่ยงแดดจัด';
+
+/* ====================== STATE / STORAGE ====================== */
+function loadState(){
+  try{
+    const raw = localStorage.getItem('lifeTrackerV1');
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  return {schedule:JSON.parse(JSON.stringify(DEFAULT_SCHEDULE)), logs:{}, foodDb:JSON.parse(JSON.stringify(DEFAULT_FOOD_DB)), settings:{proteinTarget:135,calorieTarget:1450,ifEatStart:'09:00',ifEatHours:6}};
+}
+function ensureStateDefaults(){
+  if(!state.foodDb) state.foodDb = JSON.parse(JSON.stringify(DEFAULT_FOOD_DB));
+  if(!state.vocab) state.vocab = [];
+  if(!state.debts) state.debts = JSON.parse(JSON.stringify(DEFAULT_DEBTS));
+  if(!state.recurringExpenses) state.recurringExpenses = JSON.parse(JSON.stringify(DEFAULT_EXPENSES));
+  if(state.monthlyIncome==null) state.monthlyIncome = 30000;
+  if(!state.settings) state.settings = {};
+  if(state.settings.ifEatStart==null) state.settings.ifEatStart = '09:00';
+  if(state.settings.ifEatHours==null) state.settings.ifEatHours = 6;
+  if(!state.logs) state.logs = {};
+  if(!state.schedule) state.schedule = JSON.parse(JSON.stringify(DEFAULT_SCHEDULE));
+}
+let state = loadState();
+ensureStateDefaults();
+let toastTimer=null;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  if(!t) return;
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),1300);
+}
+function updateSavedIndicator(){
+  const el=document.getElementById('savedIndicator');
+  if(!el) return;
+  let txt = '';
+  if(state.lastSaved){
+    const d=new Date(state.lastSaved);
+    txt = 'บันทึกล่าสุด '+pad(d.getHours())+':'+pad(d.getMinutes());
+  }
+  txt += cloudReady ? ' • ☁️ ซิงก์กับบัญชีแล้ว' : (cloudChecked ? ' • 📱 เก็บในเครื่องนี้เท่านั้น' : '');
+  el.textContent = txt;
+}
+
+/* ---- Cloud sync via the db capability (upload-only auto; restore is a manual, explicit action) ---- */
+let cloudDb=null, cloudUser=null, cloudUid=null, cloudDocRef=null, cloudReady=false, cloudChecked=false;
+let cloudHasNewerBackup=false;
+let pendingCloudWrite = Promise.resolve();
+function queueCloudWrite(){
+  if(!cloudDocRef) return;
+  pendingCloudWrite = pendingCloudWrite
+    .then(()=>cloudDocRef.set({state, savedAt: state.lastSaved||Date.now()}))
+    .catch(err=>console.error('cloud save failed', err));
+}
+function pushToCloud(){ queueCloudWrite(); }
+async function initCloud(){
+  try{
+    if(!window.claude || !window.claude.use) { cloudChecked=true; updateSavedIndicator(); return; }
+    cloudDb = await window.claude.use('db');
+    cloudUser = await window.claude.use('user');
+    if(!cloudDb || !cloudUser){ cloudChecked=true; updateSavedIndicator(); return; }
+    cloudUid = await cloudUser.id();
+    if(!cloudUid){ cloudChecked=true; updateSavedIndicator(); return; }
+    cloudDocRef = cloudDb.doc('data/users/'+cloudUid+'/tracker_state');
+    const snap = await cloudDocRef.get();
+    cloudReady = true;
+    cloudChecked = true;
+    if(snap.exists){
+      const cloudData = snap.data();
+      const cloudSavedAt = (cloudData && cloudData.savedAt) || 0;
+      const localSavedAt = state.lastSaved || 0;
+      // NEVER auto-overwrite in-memory state. Just flag it so Settings can offer a manual restore.
+      if(cloudData && cloudData.state && cloudSavedAt > localSavedAt){
+        cloudHasNewerBackup = true;
+      } else {
+        queueCloudWrite();
+      }
+    } else {
+      queueCloudWrite();
+    }
+    updateSavedIndicator();
+    if(currentTab==='settings') renderMain();
+  }catch(e){
+    console.error('cloud init failed', e);
+    cloudChecked = true;
+    updateSavedIndicator();
+  }
+}
+async function restoreFromCloud(){
+  if(!cloudDocRef) return;
+  try{
+    const snap = await cloudDocRef.get();
+    if(snap.exists && snap.data() && snap.data().state){
+      if(!confirm('กู้คืนข้อมูลจากคลาวด์ จะเขียนทับข้อมูลปัจจุบันในเครื่องนี้ทั้งหมด ต้องการดำเนินการต่อไหม?')) return;
+      state = snap.data().state;
+      ensureStateDefaults();
+      try{ localStorage.setItem('lifeTrackerV1', JSON.stringify(state)); }catch(e){}
+      cloudHasNewerBackup = false;
+      showToast('กู้คืนข้อมูลจากคลาวด์แล้ว ✓');
+      renderTabs(); renderMain(); updateSavedIndicator();
+    } else {
+      showToast('ไม่พบข้อมูลสำรองบนคลาวด์');
+    }
+  }catch(e){
+    console.error('restore failed', e);
+    showToast('กู้คืนไม่สำเร็จ');
+  }
+}
+function save(){
+  try{
+    state.lastSaved = Date.now();
+    localStorage.setItem('lifeTrackerV1', JSON.stringify(state));
+    showToast(cloudReady ? 'บันทึกแล้ว ✓ ☁️' : 'บันทึกแล้ว ✓');
+    updateSavedIndicator();
+  }catch(e){
+    showToast('⚠️ บันทึกไม่สำเร็จ (พื้นที่จัดเก็บเต็ม/ถูกปิดกั้น)');
+    console.error('save failed', e);
+  }
+  pushToCloud();
+}
+function pad(n){return n.toString().padStart(2,'0');}
+function fmtDate(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function parseDate(s){const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);}
+function dayCode(dateStr){return DAY_ORDER[(parseDate(dateStr).getDay()+6)%7];}
+function ensureLog(dateStr){
+  if(!state.logs[dateStr]) state.logs[dateStr]={done:{},subDone:{},weights:{},water:{},food:[],tasks:[],finance:[],english:false,vocabReviewed:{},speaking:[],waist:null,hip:null,weightKg:null};
+  const l=state.logs[dateStr];
+  ['done','subDone','weights','water','food','tasks','finance','vocabReviewed','speaking'].forEach(k=>{if(!l[k]) l[k]= (k==='food'||k==='tasks'||k==='finance'||k==='speaking')?[]:{};});
+  if(!l.pcosLog) l.pcosLog = {sleepHours:null, mood:'', note:''};
+  return l;
+}
+let currentDate = fmtDate(new Date());
+if(currentDate < PLAN_START) currentDate = PLAN_START;
+let currentTab = 'today';
+
+/* ====================== TABS ====================== */
+const TABS = [
+  {id:'today',label:'🌤️ วันนี้'},
+  {id:'food',label:'🍗 อาหาร'},
+  {id:'body',label:'📏 น้ำหนัก'},
+  {id:'english',label:'🗣️ ภาษา'},
+  {id:'laser',label:'✨ เลเซอร์'},
+  {id:'finance',label:'💸 การเงิน'},
+  {id:'settings',label:'⚙️ ตั้งค่า'},
+];
+function renderTabs(){
+  const el = document.getElementById('tabs');
+  el.innerHTML = TABS.map(t=>`<button class="tabbtn ${t.id===currentTab?'active':''}" data-tab="${t.id}">${t.label}</button>`).join('');
+  el.querySelectorAll('.tabbtn').forEach(b=>b.onclick=()=>{currentTab=b.dataset.tab; renderTabs(); renderMain(); document.getElementById('fabBtn').style.display = (currentTab==='today')?'flex':(currentTab==='settings'?'flex':'none');});
+}
+
+/* ====================== TODAY TAB ====================== */
+function scheduleForDay(dateStr){
+  const dc = dayCode(dateStr);
+  return state.schedule.filter(it=> it.days==='all' || (Array.isArray(it.days) && it.days.includes(dc)))
+    .slice().sort((a,b)=> a.time.localeCompare(b.time));
+}
+function getEffectiveSubs(item, dateStr){
+  if(item.id==='skam'){
+    return [
+      {id:'face_am',t:'หน้า: Cleanser → Niacinamide → B5+ → (Moisturizer ถ้าแห้ง) → Sunscreen SPF50+'},
+      {id:'body_am',t:'ตัว: อาบน้ำ → CeraVe Urea 5% → กันแดดบริเวณที่โดนแดด (คอ/แขน/ขา/หลังมือ)'},
+    ];
+  }
+  if(item.id==='skpm'){
+    const dc = dayCode(dateStr);
+    const near = isNearLaser(dateStr);
+    const limb = near ? LASER_CAUTION+' (แขน/ขา)' : LIMB_ROUTINE[dc];
+    const under = near ? LASER_CAUTION+' (รักแร้/ขาหนีบ)' : UNDERARM_ROUTINE[dc];
+    return [
+      {id:'face_pm', t:'หน้า: '+FACE_ROUTINE[dc]},
+      {id:'body_pm', t:'ตัว (แขน/ขา): '+limb},
+      {id:'butt_pm', t:'ก้น: '+BUTT_ROUTINE[dc]},
+      {id:'underarm_pm', t:'จักแร้ / ขาหนีบ: '+under},
+      {id:'nipple_pm', t:'หัวนม (ผิวบางมาก): '+NIPPLE_ROUTINE[dc]},
+    ];
+  }
+  return item.subs;
+}
+function renderPcosCard(dateStr){
+  const log = ensureLog(dateStr);
+  const items = scheduleForDay(dateStr);
+  const weightItem = items.find(it=>it.cat==='weight');
+  const cardioDone = !!log.done['cardio'];
+  const myoDone = !!(log.subDone['wake'] && log.subDone['wake']['myo1']);
+  const vitdDone = !!(log.subDone['vitam'] && log.subDone['vitam']['vitd']);
+  const minoxDone = !!log.done['minoxidil'];
+  const destressDone = !!log.done['destress'];
+  const waterCount = ['w1','w2','w3','w4','w5'].filter(id=>log.done[id]).length;
+  const totalP = log.food.reduce((s,f)=>s+f.p,0);
+  const pTarget = state.settings.proteinTarget||135;
+  const checks = [
+    {label:'คาร์ดิโอเช้า', ok:cardioDone},
+    {label: weightItem ? 'เวทเย็น' : 'เวทเย็น (วันนี้พัก)', ok: weightItem ? !!log.done[weightItem.id] : null},
+    {label:`โปรตีน (${Math.round(totalP)}/${pTarget}g)`, ok: totalP >= pTarget*0.9},
+    {label:'Myo-inositol เช้า', ok:myoDone},
+    {label:'Vitamin D', ok:vitdDone},
+    {label:'ไมนอกซิดิล', ok:minoxDone},
+    {label:`น้ำ (${waterCount}/5 แก้ว)`, ok:waterCount>=5},
+    {label:'พักคลายเครียด', ok:destressDone},
+  ];
+  return `<div class="card">
+    <h3>🌸 ดูแลตัวเอง PCOS วันนี้</h3>
+    <details style="margin-bottom:10px;">
+      <summary style="cursor:pointer;font-size:13px;color:var(--ink-soft);">ดูสรุปแนวทางดูแลตัวเอง</summary>
+      <div style="font-size:12.5px;color:var(--ink-soft);margin-top:8px;line-height:1.7;">
+        <b>ลดน้ำหนัก/อินซูลิน:</b> โปรตีนสูง+แคลอรี่พอดี (ไม่โหดเกินไป) • คาร์ดิโอ+เวทสม่ำเสมอ • นอนให้พอ • คุมความเครียด • Myo-inositol/Vitamin D ช่วยเรื่องอินซูลินและรอบเดือน<br><br>
+        <b>ลดผมร่วง:</b> ทาไมนอกซิดิลสม่ำเสมอ (เห็นผลจริง 3–6 เดือน) • จัดแต่งผมเบามือ ลดความร้อน/การดึงรั้ง • อย่าลดแคลอรี่ต่ำเกินไปเพราะยิ่งทำให้ผมร่วงหนักขึ้น • ถ้าผมร่วงเยอะผิดปกติควรปรึกษาแพทย์ผิวหนัง/แพทย์ฮอร์โมนเพิ่มเติม (บางคนอาจได้ยาต้านแอนโดรเจนตามดุลยพินิจแพทย์)<br><br>
+        <i>ข้อมูลทั่วไป ไม่ใช่คำวินิจฉัยหรือคำสั่งแพทย์ — ควรพบสูตินรีแพทย์/แพทย์ต่อมไร้ท่อเป็นระยะเพื่อติดตามอาการและปรับแผนการรักษา</i>
+      </div>
+    </details>
+    <div class="statgrid" style="margin-bottom:12px;">
+      ${checks.map(c=>`<div class="stat" style="display:flex;align-items:center;gap:6px;padding:8px 10px;">
+        <span style="font-size:14px;">${c.ok===null?'⏸️':(c.ok?'✅':'⭕')}</span>
+        <span style="font-size:11px;">${c.label}</span>
+      </div>`).join('')}
+    </div>
+    <label>นอนคืนที่ผ่านมา (ชั่วโมง)</label><input type="number" step="0.5" id="pcosSleep" value="${log.pcosLog.sleepHours??''}">
+    <label>อารมณ์/ความเครียดวันนี้</label>
+    <select id="pcosMood">
+      <option value="">-- เลือก --</option>
+      <option value="good" ${log.pcosLog.mood==='good'?'selected':''}>ดี ผ่อนคลาย</option>
+      <option value="ok" ${log.pcosLog.mood==='ok'?'selected':''}>ปานกลาง</option>
+      <option value="stressed" ${log.pcosLog.mood==='stressed'?'selected':''}>เครียด/กดดัน</option>
+    </select>
+    <label>บันทึกอาการ (ถ้ามี เช่น ผมร่วง, สิว, ประจำเดือน)</label>
+    <input type="text" id="pcosNote" value="${(log.pcosLog.note||'').replace(/"/g,'&quot;')}">
+    <div style="margin-top:10px;"><button class="ghost" id="savePcosBtn">บันทึก</button></div>
+  </div>`;
+}
+/* ====================== IF (INTERMITTENT FASTING) TIMER ====================== */
+function fmtDur(min){
+  min = Math.max(0, Math.round(min));
+  const h = Math.floor(min/60), m = min%60;
+  return (h>0? h+'ชม ':'') + m+'นาที';
+}
+function computeIfStatus(now){
+  const [sh,sm] = state.settings.ifEatStart.split(':').map(Number);
+  const eatStartMin = sh*60+sm;
+  const eatDurMin = (state.settings.ifEatHours||6)*60;
+  const eatEndMin = eatStartMin + eatDurMin;
+  const fastDurMin = 1440 - eatDurMin;
+  const nowMin = now.getHours()*60 + now.getMinutes() + now.getSeconds()/60;
+  if(nowMin >= eatStartMin && nowMin < eatEndMin){
+    const elapsed = nowMin - eatStartMin;
+    const remaining = eatEndMin - nowMin;
+    return {inEating:true, remaining, elapsed, total:eatDurMin, progress:Math.min(1,elapsed/eatDurMin)};
+  }
+  const nextEatStartMin = nowMin < eatStartMin ? eatStartMin : eatStartMin+1440;
+  const lastEatEndMin = nowMin >= eatEndMin ? eatEndMin : eatEndMin-1440;
+  const elapsed = nowMin - lastEatEndMin;
+  const remaining = nextEatStartMin - nowMin;
+  return {inEating:false, remaining, elapsed, total:fastDurMin, progress:Math.min(1,elapsed/fastDurMin)};
+}
+function renderIfCard(){
+  return `<div class="card" id="ifCard">
+    <h3>⏱️ Intermittent Fasting</h3>
+    <div class="sub" id="ifStatusLine" style="margin-bottom:6px;"></div>
+    <div class="progwrap"><div class="progfill" id="ifProgressFill" style="width:0%"></div></div>
+    <div class="sub" style="margin-top:6px;" id="ifWindowLine"></div>
+  </div>`;
+}
+function tickIfTimer(){
+  const el = document.getElementById('ifCard');
+  if(!el) return;
+  const st = computeIfStatus(new Date());
+  const statusLine = document.getElementById('ifStatusLine');
+  const fill = document.getElementById('ifProgressFill');
+  const windowLine = document.getElementById('ifWindowLine');
+  if(!statusLine||!fill||!windowLine) return;
+  if(st.inEating){
+    statusLine.innerHTML = `<b style="color:var(--sage-deep);">🍽️ อยู่ในช่วงกิน</b> — ปิดช่วงกินอีก ${fmtDur(st.remaining)}`;
+    fill.style.background = 'linear-gradient(90deg,var(--sage-deep),var(--sage))';
+  } else {
+    statusLine.innerHTML = `<b style="color:var(--peach-deep);">⏳ อยู่ในช่วงอด</b> — อดมาแล้ว ${fmtDur(st.elapsed)} เริ่มกินได้อีก ${fmtDur(st.remaining)}`;
+    fill.style.background = 'linear-gradient(90deg,var(--peach-deep),var(--pink))';
+  }
+  fill.style.width = Math.round(st.progress*100)+'%';
+  const eh = state.settings.ifEatHours||6;
+  windowLine.textContent = `ช่วงกิน ${state.settings.ifEatStart} เป็นเวลา ${eh} ชม. (อด ${24-eh} ชม.) — แก้ไขได้ที่แท็บตั้งค่า`;
+}
+setInterval(tickIfTimer, 1000);
+
+function renderToday(){
+  const items = scheduleForDay(currentDate);
+  const log = ensureLog(currentDate);
+  const total = items.length || 1;
+  const doneCount = items.filter(it=>log.done[it.id]).length;
+  document.getElementById('dayProgress').textContent = `${new Intl.DateTimeFormat('th-TH',{weekday:'long',day:'numeric',month:'long'}).format(parseDate(currentDate))} • ทำแล้ว ${doneCount}/${total} รายการ (${Math.round(doneCount/total*100)}%)`;
+  let html = '';
+  items.forEach(it=>{
+    const cat = CATS[it.cat]||CATS.other;
+    const isDone = !!log.done[it.id];
+    const subs = getEffectiveSubs(it, currentDate);
+    html += `<div class="card" style="padding:12px 14px;">
+      <div class="item" style="border:none;padding:0;">
+        <div class="chk ${isDone?'done':''}" data-act="toggle" data-id="${it.id}">${isDone?'✓':''}</div>
+        <div class="txt">
+          <div class="row"><span class="ttl ${isDone?'done':''}">${it.title}</span><span class="time-badge">${it.time}</span></div>
+          <div class="sub"><span class="badge-cat">${cat.label}</span> ${it.notes?(' • '+it.notes):''}</div>
+        </div>
+        <button class="editbtn" data-act="edit" data-id="${it.id}">✏️</button>
+      </div>`;
+    if(subs){
+      html += subs.map(s=>{
+        const sd = !!(log.subDone[it.id]&&log.subDone[it.id][s.id]);
+        const wv = (log.weights[it.id]&&log.weights[it.id][s.id])||'';
+        const showWeight = it.cat==='weight';
+        return `<div class="subitem">
+          <div class="chk small ${sd?'done':''}" data-act="subtoggle" data-id="${it.id}" data-sub="${s.id}">${sd?'✓':''}</div>
+          <span style="font-size:13px;flex:1;${sd?'text-decoration:line-through;color:var(--ink-soft);':''}">${s.t}</span>
+          ${showWeight?`<input type="number" placeholder="kg" value="${wv}" data-act="weightinput" data-id="${it.id}" data-sub="${s.id}">`:''}
+        </div>`;
+      }).join('');
+    }
+    if(it.id==='workstart'){
+      const tasks = log.tasks||[];
+      html += `<div style="margin-top:10px;">`;
+      tasks.forEach((t,i)=>{
+        html += `<div class="subitem">
+          <div class="chk small ${t.done?'done':''}" data-act="tasktoggle" data-idx="${i}">${t.done?'✓':''}</div>
+          <span style="font-size:13px;flex:1;${t.done?'text-decoration:line-through;color:var(--ink-soft);':''}">${t.text}${t.movedFrom?` <span style="color:var(--ink-soft);font-size:11px;">(ยกมาจาก ${t.movedFrom})</span>`:''}</span>
+          <button class="del" data-act="deltask" data-idx="${i}">✕</button>
+        </div>`;
+      });
+      html += `<div class="frow" style="margin-top:8px;gap:6px;">
+          <input type="text" id="taskInput" placeholder="เพิ่มงานที่ต้องทำวันนี้">
+          <button class="ghost" id="addTaskBtn" style="flex:0 0 auto;">➕</button>
+        </div>`;
+      const unfinished = tasks.filter(t=>!t.done).length;
+      if(unfinished>0){
+        html += `<div style="margin-top:8px;"><button class="linkbtn" data-act="rolltasks">เลื่อนงานที่ยังไม่เสร็จ (${unfinished}) ไปพรุ่งนี้ →</button></div>`;
+      }
+      html += `</div>`;
+    }
+    html += `</div>`;
+  });
+  document.getElementById('main').innerHTML = `<div class="section-note">แตะวงกลมเพื่อติ๊กว่าทำแล้ว กดดินสอเพื่อแก้เวลา/รายการ กด + ด้านล่างเพื่อเพิ่มรายการใหม่ • งานที่ยังไม่เสร็จในหมวด "เริ่มงาน" กดเลื่อนไปพรุ่งนี้ได้เลย</div>` + (currentDate===fmtDate(new Date()) ? renderIfCard() : '') + renderPcosCard(currentDate) + (html || '<div class="empty">ยังไม่มีรายการของวันนี้</div>');
+  tickIfTimer();
+}
+
+/* ====================== FOOD TAB ====================== */
+function renderFood(){
+  const log = ensureLog(currentDate);
+  const totals = log.food.reduce((a,f)=>({p:a.p+f.p,c:a.c+f.c}),{p:0,c:0});
+  const pTarget = state.settings.proteinTarget||135, cTarget = state.settings.calorieTarget||1450;
+  const pPct = Math.min(100, Math.round(totals.p/pTarget*100));
+  const cPct = Math.min(100, Math.round(totals.c/cTarget*100));
+  let html = `<div class="card">
+    <h3>🎯 สรุปวันนี้</h3>
+    <div class="statgrid">
+      <div class="stat"><div class="bignum">${Math.round(totals.p)}g</div><div class="lbl">โปรตีน (เป้า ${pTarget}g)</div><div class="progwrap"><div class="progfill" style="width:${pPct}%"></div></div></div>
+      <div class="stat"><div class="bignum">${Math.round(totals.c)}</div><div class="lbl">แคลอรี่ (เป้า ${cTarget})</div><div class="progwrap"><div class="progfill" style="width:${cPct}%;background:linear-gradient(90deg,var(--sage-deep),var(--sage))"></div></div></div>
+    </div>
+  </div>
+  <div class="card"><h3>➕ เพิ่มอาหาร</h3>
+  <input type="text" id="foodSearch" placeholder="ค้นหา เช่น ไก่, ปลา, หมู, เวย์" value="${foodSearchTerm.replace(/"/g,'&quot;')}">
+  <div class="foodgrid" style="margin-top:10px;">`;
+  const filtered = state.foodDb.filter(f=>f.name.toLowerCase().includes(foodSearchTerm.toLowerCase()));
+  if(filtered.length===0){ html += `<div class="empty" style="grid-column:1/-1;">ไม่พบอาหารที่ค้นหา</div>`; }
+  filtered.forEach(f=>{
+    const isServing = f.mode==='serving';
+    const metaTxt = isServing ? `${f.serving.p}g โปรตีน / ${f.serving.c} kcal ต่อ 1 ${f.unit}` : `${f.per100.p}g โปรตีน / ${f.per100.c} kcal ต่อ 100${f.unit}`;
+    html += `<div class="fbtn">
+      <div class="row" style="align-items:flex-start;">
+        <div class="fname">${f.name}</div>
+        <span><button class="editbtn" style="font-size:13px;" data-act="editfooditem" data-id="${f.id}">✏️</button></span>
+      </div>
+      <div class="fmeta">${metaTxt}</div>
+      <div class="frow">
+        <input type="number" value="${f.def}" data-qty="${f.id}">
+        <button class="ghost" data-act="addfood" data-id="${f.id}">เพิ่ม</button>
+      </div>
+    </div>`;
+  });
+  html += `</div>`;
+  html += `<div style="margin-top:10px;"><button class="ghost" id="addFoodItemBtn">➕ เพิ่มอาหารชนิดใหม่</button></div></div>
+  <div class="card"><h3>📋 ที่กินไปวันนี้</h3>`;
+  if(log.food.length===0){ html += '<div class="empty">ยังไม่ได้บันทึกมื้ออาหาร</div>'; }
+  else { log.food.forEach((f,i)=>{ html += `<div class="foodlogitem"><span>${f.name} (${f.qty}${f.unit}) — ${Math.round(f.p)}g P / ${Math.round(f.c)} kcal</span><button class="del" data-act="delfood" data-idx="${i}">✕</button></div>`; }); }
+  html += `</div>`;
+  document.getElementById('main').innerHTML = html;
+}
+
+/* ====================== BODY / WEIGHT TAB ====================== */
+function renderWeeklySummary(){
+  const days = [];
+  for(let i=6;i>=0;i--){ days.push(fmtDate(new Date(Date.now()-i*86400000))); }
+  let sumPct=0, sumProtein=0, sumWater=0, sleepVals=[], cardioSched=0, cardioDone=0, weightSched=0, weightDone=0, destressDone=0;
+  const rows = days.map(d=>{
+    const items = scheduleForDay(d);
+    const log = state.logs[d];
+    const done = log ? items.filter(it=>log.done[it.id]).length : 0;
+    const pct = items.length ? Math.round(done/items.length*100) : 0;
+    sumPct += pct;
+    if(log){
+      sumProtein += log.food.reduce((s,f)=>s+f.p,0);
+      sumWater += ['w1','w2','w3','w4','w5'].filter(id=>log.done[id]).length;
+      if(log.pcosLog && log.pcosLog.sleepHours!=null) sleepVals.push(log.pcosLog.sleepHours);
+      if(log.done['destress']) destressDone++;
+    }
+    if(items.some(it=>it.id==='cardio')){ cardioSched++; if(log && log.done['cardio']) cardioDone++; }
+    const wItem = items.find(it=>it.cat==='weight');
+    if(wItem){ weightSched++; if(log && log.done[wItem.id]) weightDone++; }
+    return {d, pct};
+  });
+  const avgPct = Math.round(sumPct/7);
+  const avgProtein = Math.round(sumProtein/7);
+  const avgWater = (sumWater/7).toFixed(1);
+  const avgSleep = sleepVals.length ? (sleepVals.reduce((a,b)=>a+b,0)/sleepVals.length).toFixed(1) : '-';
+  const rowsHtml = rows.map(r=>`<div class="hist"><span>${r.d}</span><span style="flex:1;margin-left:10px;"><div class="progwrap" style="height:10px;"><div class="progfill" style="width:${r.pct}%"></div></div></span><span style="margin-left:8px;">${r.pct}%</span></div>`).join('');
+  return `<div class="card"><h3>📊 สรุป 7 วันล่าสุด</h3>
+    <div class="statgrid" style="margin-bottom:12px;">
+      <div class="stat"><div class="bignum">${avgPct}%</div><div class="lbl">ทำครบเฉลี่ย/วัน</div></div>
+      <div class="stat"><div class="bignum">${avgProtein}g</div><div class="lbl">โปรตีนเฉลี่ย/วัน</div></div>
+      <div class="stat"><div class="bignum">${cardioDone}/${cardioSched}</div><div class="lbl">วันคาร์ดิโอที่ทำ</div></div>
+      <div class="stat"><div class="bignum">${weightDone}/${weightSched}</div><div class="lbl">วันเวทที่ทำ</div></div>
+      <div class="stat"><div class="bignum">${avgWater}/5</div><div class="lbl">แก้วน้ำเฉลี่ย/วัน</div></div>
+      <div class="stat"><div class="bignum">${avgSleep}</div><div class="lbl">ชม.นอนเฉลี่ย</div></div>
+    </div>
+    ${rowsHtml}
+  </div>`;
+}
+function renderBody(){
+  const log = ensureLog(currentDate);
+  const history = Object.keys(state.logs).filter(d=>state.logs[d].weightKg!=null).sort();
+  let chart = '';
+  if(history.length>1){
+    const vals = history.map(d=>state.logs[d].weightKg);
+    const min=Math.min(...vals), max=Math.max(...vals);
+    const w=280,h=80,pad=6;
+    const pts = vals.map((v,i)=>{
+      const x = pad + i*(w-2*pad)/(vals.length-1);
+      const y = h-pad - (max===min?h/2:(v-min)/(max-min)*(h-2*pad));
+      return `${x},${y}`;
+    }).join(' ');
+    chart = `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:90px;"><polyline points="${pts}" fill="none" stroke="var(--peach-deep)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  }
+  let html = renderWeeklySummary() + `<div class="card"><h3>📏 บันทึกวันนี้</h3>
+    <label>น้ำหนัก (kg)</label><input type="number" step="0.1" id="wInput" value="${log.weightKg??''}">
+    <label>รอบเอว (cm)</label><input type="number" step="0.1" id="waistInput" value="${log.waist??''}">
+    <label>รอบสะโพก (cm)</label><input type="number" step="0.1" id="hipInput" value="${log.hip??''}">
+    <div style="margin-top:12px;"><button class="primary" id="saveBodyBtn">บันทึก</button></div>
+  </div>
+  <div class="card"><h3>📈 แนวโน้มน้ำหนัก</h3>${chart||'<div class="empty">บันทึกอย่างน้อย 2 วันเพื่อดูกราฟ</div>'}</div>
+  <div class="card"><h3>🗂️ ประวัติ</h3>`;
+  if(history.length===0) html += '<div class="empty">ยังไม่มีข้อมูล</div>';
+  else history.slice().reverse().slice(0,20).forEach(d=>{
+    const l = state.logs[d];
+    html += `<div class="hist"><span>${d}</span><span>${l.weightKg??'-'} kg ${l.waist?(' • เอว '+l.waist):''}${l.hip?(' • สะโพก '+l.hip):''}</span></div>`;
+  });
+  html += `</div>`;
+  document.getElementById('main').innerHTML = html;
+}
+
+/* ====================== ENGLISH TAB ====================== */
+function englishLessonFor(dateStr){
+  const idx = Math.floor((parseDate(dateStr)-parseDate(PLAN_START))/86400000);
+  return ENGLISH_CYCLE[((idx%7)+7)%7];
+}
+function computeEnglishStreak(){
+  const todayStr = fmtDate(new Date());
+  const includeToday = !!(state.logs[todayStr] && state.logs[todayStr].english);
+  let cursor = new Date();
+  if(!includeToday) cursor.setDate(cursor.getDate()-1);
+  let streak = 0;
+  while(true){
+    const ds = fmtDate(cursor);
+    if(state.logs[ds] && state.logs[ds].english){ streak++; cursor.setDate(cursor.getDate()-1); } else break;
+  }
+  return {streak, includeToday};
+}
+function renderEnglish(){
+  const log = ensureLog(currentDate);
+  const lesson = englishLessonFor(currentDate);
+  const {streak, includeToday} = computeEnglishStreak();
+  let html = `<div class="card" style="text-align:center;">
+    <div style="font-size:32px;">🔥</div>
+    <div class="bignum" style="font-size:26px;">${streak} วันติดต่อกัน</div>
+    <div class="sub">${includeToday? 'เรียนวันนี้แล้ว เก็บสถิติต่อไปนะ' : (streak>0? `ทำวันนี้ให้ครบ เพื่อต่อเป็น ${streak+1} วัน` : 'เริ่มติ๊กวันนี้เพื่อเริ่มนับ streak')}</div>
+  </div>
+  <div class="section-note">เรียนในแอพอื่นวันละ ~1.3 ชม. เน้นฟัง + พูด ติ๊กเมื่อเรียนจบบทของวันนี้</div>
+  <div class="card">
+    <div class="item" style="border:none;padding:0;">
+      <div class="chk ${log.english?'done':''}" data-act="engtoggle">${log.english?'✓':''}</div>
+      <div class="txt"><div class="ttl ${log.english?'done':''}">บทเรียนวันนี้</div><div class="sub">${lesson.t}</div></div>
+    </div>
+  </div>
+  <div class="card"><h3>🗓️ แผน 2 เดือน (ตัวอย่างล่วงหน้า 14 วัน)</h3>`;
+  let d = parseDate(currentDate);
+  for(let i=0;i<14;i++){
+    const ds = fmtDate(d);
+    const les = englishLessonFor(ds);
+    const done = !!(state.logs[ds] && state.logs[ds].english);
+    html += `<div class="hist"><span>${ds}${ds===currentDate?' (วันนี้)':''}</span><span>${done?'✅ ':''}${les.t}</span></div>`;
+    d.setDate(d.getDate()+1);
+  }
+  html += `</div>`;
+
+  // --- Speaking practice log (per day) ---
+  html += `<div class="card"><h3>🗣️ บันทึกฝึกพูด (วันนี้)</h3>`;
+  (log.speaking||[]).forEach((s,i)=>{
+    html += `<div class="foodlogitem"><span>${s.topic} — มั่นใจ ${'⭐'.repeat(s.confidence)}${'☆'.repeat(5-s.confidence)}</span><button class="del" data-act="delspeak" data-idx="${i}">✕</button></div>`;
+  });
+  html += `<label>หัวข้อที่ฝึกวันนี้</label><input type="text" id="speakTopic" placeholder="เช่น สั่งอาหาร, แนะนำตัว, เล่าวันนี้">
+    <label>ความมั่นใจ</label>
+    <select id="speakConfidence">
+      <option value="1">⭐ ไม่มั่นใจเลย</option>
+      <option value="2">⭐⭐ ยังตะกุกตะกัก</option>
+      <option value="3" selected>⭐⭐⭐ พอไปได้</option>
+      <option value="4">⭐⭐⭐⭐ ค่อนข้างมั่นใจ</option>
+      <option value="5">⭐⭐⭐⭐⭐ มั่นใจมาก</option>
+    </select>
+    <div style="margin-top:8px;"><button class="ghost" id="addSpeakBtn">➕ บันทึก</button></div>
+  </div>`;
+
+  // --- Vocabulary notebook (global) ---
+  const totalVocab = state.vocab.length;
+  const reviewedToday = state.vocab.filter(v=>log.vocabReviewed[v.id]).length;
+  html += `<div class="card"><h3>📔 สมุดคำศัพท์ <span class="badge-cat">ทบทวนวันนี้ ${reviewedToday}/${totalVocab}</span></h3>
+    <label>คำศัพท์ใหม่</label><input type="text" id="vocabWord" placeholder="เช่น procrastinate">
+    <label>ความหมาย/ตัวอย่างประโยค</label><input type="text" id="vocabMeaning" placeholder="เช่น ผัดวันประกันพรุ่ง">
+    <div style="margin-top:8px;"><button class="ghost" id="addVocabBtn">➕ เพิ่มคำศัพท์</button></div>
+  </div>`;
+  if(totalVocab===0){
+    html += `<div class="card"><div class="empty">ยังไม่มีคำศัพท์ในสมุด ลองเพิ่มคำแรกดูสิ</div></div>`;
+  } else {
+    html += `<div class="card"><h3>รายการคำศัพท์</h3>`;
+    state.vocab.slice().reverse().forEach(v=>{
+      const reviewed = !!log.vocabReviewed[v.id];
+      html += `<div class="item" style="padding:8px 0;">
+        <div class="chk small ${reviewed?'done':''}" data-act="vocabtoggle" data-id="${v.id}">${reviewed?'✓':''}</div>
+        <div class="txt"><div class="ttl" style="font-weight:700;">${v.word}</div><div class="sub">${v.meaning}</div></div>
+        <button class="del" data-act="delvocab" data-id="${v.id}">✕</button>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+  document.getElementById('main').innerHTML = html;
+}
+
+/* ====================== LASER TAB ====================== */
+function renderLaser(){
+  const sundays=[]; let d = parseDate(PLAN_START);
+  while(d.getDay()!==0){ d.setDate(d.getDate()+1); }
+  const end = parseDate(PLAN_END);
+  while(d<=end){ sundays.push(fmtDate(d)); d = new Date(d.getTime()+7*86400000); }
+  let html = `<div class="section-note">
+    ⚠️ <b>ข้อควรระวัง:</b> เพราะเลเซอร์ที่บ้านทำทุกสัปดาห์ ควรงดใช้ Retinol / BHA / Glycolic / Azelaic บริเวณขา รักแร้ และบิกินี่ ในวันที่ทำและอีก 1-2 วันถัดไป (แอปตั้งค่าให้อัตโนมัติในวันอาทิตย์-จันทร์ ที่แท็บ "วันนี้") ให้ใช้แค่ Urea + มอยส์เจอไรเซอร์เบาๆ และเลี่ยงแดดจัดบริเวณนั้นแทน<br><br>
+    เนื่องจากรอบเลเซอร์ทุก 7 วันชนกับรอบสารผลัดผิวค่อนข้างถี่ ถ้าอยากใช้ Retinol/Glycolic บนขาได้เต็มที่ขึ้น อาจพิจารณาขยายรอบเลเซอร์เป็นทุก 2 สัปดาห์แทน — ลองปรึกษาช่างเลเซอร์/ผิวหนังเพื่อความเหมาะสมกับผิวตัวเองด้วยนะ
+  </div>
+  <div class="card"><h3>✨ เลเซอร์ที่บ้าน (ขา + รักแร้ + บิกินี่) — ทุกวันอาทิตย์</h3>`;
+  sundays.forEach(ds=>{
+    const done = !!(state.logs[ds] && state.logs[ds].done && state.logs[ds].done['laserhome']);
+    html += `<div class="hist"><span>${ds}${ds===currentDate?' (วันนี้)':''}</span><span>${done?'✅ ทำแล้ว':'—'}</span></div>`;
+  });
+  html += `</div>`;
+  document.getElementById('main').innerHTML = html;
+}
+
+/* ====================== FINANCE TAB ====================== */
+function renderFinance(){
+  const totalDebtPayment = state.debts.reduce((s,d)=>s+d.monthlyPayment,0);
+  const totalExpenses = state.recurringExpenses.reduce((s,e)=>s+e.amount,0);
+  const income = state.monthlyIncome||0;
+  const leftover = income - totalDebtPayment - totalExpenses;
+
+  let html = `<div class="card"><h3>💰 งบประมาณรายเดือน</h3>
+    <label>รายได้ต่อเดือน (บาท)</label><input type="number" id="incomeInput" value="${income}">
+    <div style="margin-top:8px;"><button class="ghost" id="saveIncomeBtn">บันทึกรายได้</button></div>
+    <div class="statgrid" style="margin-top:12px;">
+      <div class="stat"><div class="bignum">${income.toLocaleString()}</div><div class="lbl">รายได้</div></div>
+      <div class="stat"><div class="bignum">-${totalDebtPayment.toLocaleString()}</div><div class="lbl">จ่ายหนี้รวม/เดือน</div></div>
+      <div class="stat"><div class="bignum">-${totalExpenses.toLocaleString()}</div><div class="lbl">ค่าใช้จ่ายประจำ/เดือน</div></div>
+      <div class="stat"><div class="bignum" style="color:${leftover>=0?'var(--sage-deep)':'var(--danger)'}">${leftover.toLocaleString()}</div><div class="lbl">เหลือ/เดือน</div></div>
+    </div>
+  </div>`;
+
+  html += `<div class="card"><h3>💳 หนี้ที่ต้องจ่าย</h3>`;
+  state.debts.forEach(d=>{
+    const pct = d.total>0 ? Math.min(100, Math.round((d.total-d.remaining)/d.total*100)) : 0;
+    const monthsLeft = d.monthlyPayment>0 ? Math.ceil(d.remaining/d.monthlyPayment) : '-';
+    html += `<div style="margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line);">
+      <div class="row"><span style="font-weight:700;">${d.name}</span><button class="editbtn" data-act="editdebt" data-id="${d.id}">✏️</button></div>
+      <div class="sub">คงเหลือ ${d.remaining.toLocaleString()} / ${d.total.toLocaleString()} บาท • จ่าย ${d.monthlyPayment.toLocaleString()}/เดือน • เหลืออีก ~${monthsLeft} เดือน</div>
+      <div class="progwrap" style="margin-top:6px;"><div class="progfill" style="width:${pct}%"></div></div>
+      <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="ghost" data-act="paydebt" data-id="${d.id}">✅ บันทึกจ่ายเดือนนี้ (-${d.monthlyPayment.toLocaleString()})</button>
+        <button class="del" data-act="deldebt" data-id="${d.id}">ลบหนี้นี้</button>
+      </div>
+    </div>`;
+  });
+  if(state.debts.length===0) html += '<div class="empty">ยังไม่มีรายการหนี้</div>';
+  html += `<button class="ghost" id="addDebtBtn">➕ เพิ่มหนี้ใหม่</button></div>`;
+
+  html += `<div class="card"><h3>🧾 ค่าใช้จ่ายประจำเดือน <span class="badge-cat">รวม ${totalExpenses.toLocaleString()} บาท</span></h3>`;
+  state.recurringExpenses.forEach(e=>{
+    html += `<div class="foodlogitem"><span>${e.name} — ${e.amount.toLocaleString()} บาท</span><span><button class="editbtn" data-act="editexpense" data-id="${e.id}">✏️</button><button class="del" data-act="delexpense" data-id="${e.id}">✕</button></span></div>`;
+  });
+  if(state.recurringExpenses.length===0) html += '<div class="empty">ยังไม่มีค่าใช้จ่ายประจำ</div>';
+  html += `<div style="margin-top:8px;"><button class="ghost" id="addExpenseBtn">➕ เพิ่มค่าใช้จ่าย</button></div></div>`;
+
+  const all = [];
+  Object.keys(state.logs).forEach(d=>{ (state.logs[d].finance||[]).forEach(f=>all.push({...f,date:d})); });
+  all.sort((a,b)=>b.date.localeCompare(a.date));
+  const incomeAdhoc = all.filter(f=>f.type==='income').reduce((s,f)=>s+f.amount,0);
+  const expenseAdhoc = all.filter(f=>f.type==='expense').reduce((s,f)=>s+f.amount,0);
+  html += `<div class="card"><h3>📝 ธุรกรรมเพิ่มเติม</h3>
+    <div class="statgrid">
+      <div class="stat"><div class="bignum">+${incomeAdhoc.toLocaleString()}</div><div class="lbl">รายรับเพิ่มเติม</div></div>
+      <div class="stat"><div class="bignum">-${expenseAdhoc.toLocaleString()}</div><div class="lbl">รายจ่ายเพิ่มเติม</div></div>
+    </div>
+    <label style="margin-top:10px;">ประเภท</label>
+    <select id="finType"><option value="expense">รายจ่าย</option><option value="income">รายรับ</option></select>
+    <label>จำนวนเงิน (บาท)</label><input type="number" id="finAmount">
+    <label>รายละเอียด</label><input type="text" id="finNote">
+    <div style="margin-top:10px;"><button class="primary" id="addFinBtn">บันทึก</button></div>
+  </div>
+  <div class="card"><h3>🗂️ ประวัติล่าสุด</h3>`;
+  if(all.length===0) html += '<div class="empty">ยังไม่มีรายการ</div>';
+  else all.slice(0,25).forEach(f=>{ html += `<div class="hist"><span>${f.date} • ${f.note||'-'}</span><span style="color:${f.type==='income'?'var(--sage-deep)':'var(--danger)'}">${f.type==='income'?'+':'-'}${f.amount.toLocaleString()}</span></div>`; });
+  html += `</div>`;
+  document.getElementById('main').innerHTML = html;
+}
+
+/* ====================== SETTINGS TAB ====================== */
+function renderSettings(){
+  let html = `<div class="card"><h3>🎯 เป้าหมายโภชนาการ</h3>
+    <label>โปรตีนต่อวัน (g)</label><input type="number" id="setProtein" value="${state.settings.proteinTarget||135}">
+    <label>แคลอรี่ต่อวัน (kcal)</label><input type="number" id="setCal" value="${state.settings.calorieTarget||1450}">
+    <div style="margin-top:10px;"><button class="primary" id="saveSettingsBtn">บันทึกเป้าหมาย</button></div>
+  </div>
+  <div class="card"><h3>⏱️ Intermittent Fasting</h3>
+    <label>เวลาเริ่มกิน (Eating window start)</label><input type="time" id="setIfStart" value="${state.settings.ifEatStart||'09:00'}">
+    <label>ช่วงกินยาวกี่ชั่วโมง</label><input type="number" step="0.5" id="setIfHours" value="${state.settings.ifEatHours||6}">
+    <div class="section-note" style="margin-top:8px;">ช่วงอดจะคำนวณให้อัตโนมัติ = 24 - ช่วงกิน (ตอนนี้คือ ${24-(state.settings.ifEatHours||6)} ชม.)</div>
+    <div style="margin-top:10px;"><button class="primary" id="saveIfBtn">บันทึกช่วง IF</button></div>
+  </div>
+  <div class="card"><h3>☁️ สำรองข้อมูล</h3>
+    <div class="section-note">${cloudReady ? (cloudHasNewerBackup? 'พบข้อมูลสำรองบนคลาวด์ที่ใหม่กว่าในเครื่องนี้' : 'ข้อมูลซิงก์ขึ้นคลาวด์อัตโนมัติอยู่แล้ว') : (cloudChecked? 'ไม่ได้เชื่อมกับคลาวด์ตอนนี้ (เก็บในเครื่องนี้เท่านั้น)' : 'กำลังเชื่อมต่อคลาวด์...')}</div>
+    ${cloudReady ? '<button class="ghost" id="restoreCloudBtn">⬇️ กู้คืนข้อมูลจากคลาวด์</button>' : ''}
+  </div>
+  <div class="card"><h3>🗓️ จัดการตารางกิจวัตร</h3><div class="section-note">แตะ + ด้านล่างเพื่อเพิ่มรายการใหม่ หรือกดดินสอที่รายการในแท็บ "วันนี้" เพื่อแก้ไข</div>`;
+  state.schedule.slice().sort((a,b)=>a.time.localeCompare(b.time)).forEach(it=>{
+    const daysTxt = it.days==='all' ? 'ทุกวัน' : it.days.map(d=>DAY_LABELS[d]).join(' ');
+    html += `<div class="hist"><span>${it.time} • ${it.title} (${daysTxt})</span><span><button class="editbtn" data-act="edit" data-id="${it.id}">✏️</button><button class="del" data-act="deleteitem" data-id="${it.id}">✕</button></span></div>`;
+  });
+  html += `</div>`;
+  document.getElementById('main').innerHTML = html;
+}
+
+/* ====================== MAIN RENDER DISPATCH ====================== */
+function renderMain(){
+  try{
+    document.getElementById('dateInput').value = currentDate;
+    if(currentTab==='today'){ document.getElementById('dayProgress').style.display='block'; renderToday(); }
+    else {
+      document.getElementById('dayProgress').textContent='';
+      ({food:renderFood, body:renderBody, english:renderEnglish, laser:renderLaser, finance:renderFinance, settings:renderSettings})[currentTab]();
+    }
+    document.getElementById('fabBtn').style.display = (currentTab==='today'||currentTab==='settings')?'flex':'none';
+  }catch(err){
+    console.error('render failed', err);
+    showToast('⚠️ แสดงผลผิดพลาด ลองปัดรีเฟรชหน้าจอ');
+  }
+}
+
+/* ====================== MODAL: add/edit schedule item ====================== */
+function openItemModal(id){
+  const it = id ? state.schedule.find(x=>x.id===id) : null;
+  const selDays = it ? it.days : 'all';
+  const isAll = selDays==='all';
+  document.getElementById('modalBody').innerHTML = `
+    <h3>${it?'แก้ไขรายการ':'เพิ่มรายการใหม่'}</h3>
+    <label>ชื่อรายการ</label><input type="text" id="mTitle" value="${it?it.title.replace(/"/g,'&quot;'):''}">
+    <label>เวลา</label><input type="time" id="mTime" value="${it?it.time:'08:00'}">
+    <label>หมวดหมู่</label>
+    <select id="mCat">${Object.keys(CATS).map(c=>`<option value="${c}" ${it&&it.cat===c?'selected':''}>${CATS[c].label}</option>`).join('')}</select>
+    <label>ทำซ้ำวันไหนบ้าง</label>
+    <div class="daychk-row" id="dayRow">
+      <div class="daychk ${isAll?'sel':''}" data-day="all">ทุกวัน</div>
+      ${DAY_ORDER.map(d=>`<div class="daychk ${(!isAll&&Array.isArray(selDays)&&selDays.includes(d))?'sel':''}" data-day="${d}">${DAY_LABELS[d]}</div>`).join('')}
+    </div>
+    <label>หมายเหตุ (ถ้ามี)</label><input type="text" id="mNotes" value="${it&&it.notes?it.notes.replace(/"/g,'&quot;'):''}">
+    <div class="modal-actions">
+      <button class="primary" id="mSave">บันทึก</button>
+      ${it?'<button class="ghost" id="mDelete" style="color:var(--danger);">ลบ</button>':''}
+      <button class="ghost" id="mCancel">ยกเลิก</button>
+    </div>
+  `;
+  document.getElementById('modalBg').classList.add('open');
+  const dayRow = document.getElementById('dayRow');
+  dayRow.querySelectorAll('.daychk').forEach(el=>{
+    el.onclick = ()=>{
+      if(el.dataset.day==='all'){
+        dayRow.querySelectorAll('.daychk').forEach(x=>x.classList.remove('sel'));
+        el.classList.add('sel');
+      } else {
+        dayRow.querySelector('[data-day="all"]').classList.remove('sel');
+        el.classList.toggle('sel');
+      }
+    };
+  });
+  document.getElementById('mCancel').onclick = closeModal;
+  if(it) document.getElementById('mDelete').onclick = ()=>{
+    state.schedule = state.schedule.filter(x=>x.id!==it.id); save(); closeModal(); renderMain();
+  };
+  document.getElementById('mSave').onclick = ()=>{
+    const title = document.getElementById('mTitle').value.trim();
+    if(!title) return;
+    const time = document.getElementById('mTime').value || '08:00';
+    const cat = document.getElementById('mCat').value;
+    const notes = document.getElementById('mNotes').value.trim();
+    const selected = Array.from(dayRow.querySelectorAll('.daychk.sel')).map(x=>x.dataset.day);
+    const days = (selected.length===0 || selected.includes('all')) ? 'all' : selected;
+    if(it){
+      it.title=title; it.time=time; it.cat=cat; it.notes=notes||undefined; it.days=days;
+    } else {
+      state.schedule.push({id:'custom_'+Date.now(), title, time, cat, notes:notes||undefined, days});
+    }
+    save(); closeModal(); renderMain();
+  };
+}
+function closeModal(){ document.getElementById('modalBg').classList.remove('open'); }
+document.getElementById('modalBg').addEventListener('click', e=>{ if(e.target.id==='modalBg') closeModal(); });
+
+/* ====================== MODAL: add/edit debt ====================== */
+function openDebtModal(id){
+  const d = id ? state.debts.find(x=>x.id===id) : null;
+  document.getElementById('modalBody').innerHTML = `
+    <h3>${d?'แก้ไขหนี้':'เพิ่มหนี้ใหม่'}</h3>
+    <label>ชื่อหนี้</label><input type="text" id="dName" value="${d?d.name.replace(/"/g,'&quot;'):''}">
+    <label>ยอดหนี้ทั้งหมด (บาท)</label><input type="number" id="dTotal" value="${d?d.total:''}">
+    <label>ยอดคงเหลือปัจจุบัน (บาท)</label><input type="number" id="dRemaining" value="${d?d.remaining:''}">
+    <label>จ่ายต่อเดือน (บาท)</label><input type="number" id="dMonthly" value="${d?d.monthlyPayment:''}">
+    <div class="modal-actions">
+      <button class="primary" id="dSave">บันทึก</button>
+      ${d?'<button class="ghost" id="dDelete" style="color:var(--danger);">ลบ</button>':''}
+      <button class="ghost" id="dCancel">ยกเลิก</button>
+    </div>
+  `;
+  document.getElementById('modalBg').classList.add('open');
+  document.getElementById('dCancel').onclick = closeModal;
+  if(d) document.getElementById('dDelete').onclick = ()=>{
+    state.debts = state.debts.filter(x=>x.id!==d.id); save(); closeModal(); renderMain();
+  };
+  document.getElementById('dSave').onclick = ()=>{
+    const name = document.getElementById('dName').value.trim();
+    const total = parseFloat(document.getElementById('dTotal').value);
+    const remaining = parseFloat(document.getElementById('dRemaining').value);
+    const monthlyPayment = parseFloat(document.getElementById('dMonthly').value);
+    if(!name || isNaN(total) || isNaN(remaining) || isNaN(monthlyPayment)) return;
+    if(d){ d.name=name; d.total=total; d.remaining=remaining; d.monthlyPayment=monthlyPayment; }
+    else { state.debts.push({id:'debt_'+Date.now(), name, total, remaining, monthlyPayment, payments:[]}); }
+    save(); closeModal(); renderMain();
+  };
+}
+
+/* ====================== MODAL: add/edit recurring expense ====================== */
+function openExpenseModal(id){
+  const e = id ? state.recurringExpenses.find(x=>x.id===id) : null;
+  document.getElementById('modalBody').innerHTML = `
+    <h3>${e?'แก้ไขค่าใช้จ่าย':'เพิ่มค่าใช้จ่ายประจำเดือน'}</h3>
+    <label>ชื่อรายการ</label><input type="text" id="eName" value="${e?e.name.replace(/"/g,'&quot;'):''}">
+    <label>จำนวนเงิน (บาท/เดือน)</label><input type="number" id="eAmount" value="${e?e.amount:''}">
+    <div class="modal-actions">
+      <button class="primary" id="eSave">บันทึก</button>
+      ${e?'<button class="ghost" id="eDelete" style="color:var(--danger);">ลบ</button>':''}
+      <button class="ghost" id="eCancel">ยกเลิก</button>
+    </div>
+  `;
+  document.getElementById('modalBg').classList.add('open');
+  document.getElementById('eCancel').onclick = closeModal;
+  if(e) document.getElementById('eDelete').onclick = ()=>{
+    state.recurringExpenses = state.recurringExpenses.filter(x=>x.id!==e.id); save(); closeModal(); renderMain();
+  };
+  document.getElementById('eSave').onclick = ()=>{
+    const name = document.getElementById('eName').value.trim();
+    const amount = parseFloat(document.getElementById('eAmount').value);
+    if(!name || isNaN(amount)) return;
+    if(e){ e.name=name; e.amount=amount; }
+    else { state.recurringExpenses.push({id:'exp_'+Date.now(), name, amount}); }
+    save(); closeModal(); renderMain();
+  };
+}
+
+/* ====================== MODAL: add/edit food item ====================== */
+function openFoodModal(id){
+  const f = id ? state.foodDb.find(x=>x.id===id) : null;
+  const mode = f ? (f.mode||'per100') : 'per100';
+  const pval = f ? (mode==='serving'?f.serving.p:f.per100.p) : '';
+  const cval = f ? (mode==='serving'?f.serving.c:f.per100.c) : '';
+  document.getElementById('modalBody').innerHTML = `
+    <h3>${f?'แก้ไขอาหาร':'เพิ่มอาหารชนิดใหม่'}</h3>
+    <label>ชื่ออาหาร</label><input type="text" id="fName" value="${f?f.name.replace(/"/g,'&quot;'):''}">
+    <label>หน่วยนับ (เช่น g, scoop, ฟอง)</label><input type="text" id="fUnit" value="${f?f.unit:'g'}">
+    <label>วิธีคำนวณ</label>
+    <select id="fMode">
+      <option value="per100" ${mode==='per100'?'selected':''}>ระบุค่าต่อ 100 หน่วย (เช่น ต่อ 100 กรัม)</option>
+      <option value="serving" ${mode==='serving'?'selected':''}>ระบุค่าต่อ 1 หน่วย (เช่น ต่อ 1 scoop/1 ฟอง)</option>
+    </select>
+    <label>โปรตีน (กรัม) ตามวิธีคำนวณด้านบน</label><input type="number" step="0.1" id="fProtein" value="${pval}">
+    <label>แคลอรี่ (kcal) ตามวิธีคำนวณด้านบน</label><input type="number" step="1" id="fCal" value="${cval}">
+    <label>ปริมาณเริ่มต้นที่กินบ่อย</label><input type="number" step="1" id="fDef" value="${f?f.def:100}">
+    <div class="modal-actions">
+      <button class="primary" id="fSave">บันทึก</button>
+      ${f?'<button class="ghost" id="fDelete" style="color:var(--danger);">ลบ</button>':''}
+      <button class="ghost" id="fCancel">ยกเลิก</button>
+    </div>
+  `;
+  document.getElementById('modalBg').classList.add('open');
+  document.getElementById('fCancel').onclick = closeModal;
+  if(f) document.getElementById('fDelete').onclick = ()=>{
+    state.foodDb = state.foodDb.filter(x=>x.id!==f.id); save(); closeModal(); renderMain();
+  };
+  document.getElementById('fSave').onclick = ()=>{
+    const name = document.getElementById('fName').value.trim();
+    const unit = document.getElementById('fUnit').value.trim()||'g';
+    const newMode = document.getElementById('fMode').value;
+    const p = parseFloat(document.getElementById('fProtein').value);
+    const c = parseFloat(document.getElementById('fCal').value);
+    const def = parseFloat(document.getElementById('fDef').value)||1;
+    if(!name || isNaN(p) || isNaN(c)) return;
+    if(f){
+      f.name=name; f.unit=unit; f.mode=newMode; f.def=def;
+      if(newMode==='serving'){ f.serving={p,c}; delete f.per100; } else { f.per100={p,c}; delete f.serving; }
+    } else {
+      const obj = {id:'food_'+Date.now(), name, unit, mode:newMode, def};
+      if(newMode==='serving') obj.serving={p,c}; else obj.per100={p,c};
+      state.foodDb.push(obj);
+    }
+    save(); closeModal(); renderMain();
+  };
+}
+
+/* ====================== EVENT DELEGATION ====================== */
+document.getElementById('main').addEventListener('click', e=>{
+  const el = e.target.closest('[data-act]');
+  if(!el) return;
+  const act = el.dataset.act;
+  const log = ensureLog(currentDate);
+  if(act==='toggle'){ const id=el.dataset.id; log.done[id]=!log.done[id]; save(); renderMain(); }
+  else if(act==='subtoggle'){
+    const id=el.dataset.id, sub=el.dataset.sub;
+    if(!log.subDone[id]) log.subDone[id]={};
+    log.subDone[id][sub] = !log.subDone[id][sub];
+    save(); renderMain();
+  }
+  else if(act==='edit'){ openItemModal(el.dataset.id); }
+  else if(act==='deleteitem'){ state.schedule = state.schedule.filter(x=>x.id!==el.dataset.id); save(); renderMain(); }
+  else if(act==='engtoggle'){ log.english=!log.english; save(); renderMain(); }
+  else if(act==='delspeak'){ log.speaking.splice(parseInt(el.dataset.idx),1); save(); renderMain(); }
+  else if(act==='vocabtoggle'){ const id=el.dataset.id; log.vocabReviewed[id]=!log.vocabReviewed[id]; save(); renderMain(); }
+  else if(act==='delvocab'){ state.vocab = state.vocab.filter(v=>v.id!==el.dataset.id); save(); renderMain(); }
+  else if(act==='editdebt'){ openDebtModal(el.dataset.id); }
+  else if(act==='deldebt'){ state.debts = state.debts.filter(d=>d.id!==el.dataset.id); save(); renderMain(); }
+  else if(act==='paydebt'){
+    const d = state.debts.find(x=>x.id===el.dataset.id);
+    if(d){
+      d.remaining = Math.max(0, d.remaining - d.monthlyPayment);
+      if(!d.payments) d.payments=[];
+      d.payments.push({date:currentDate, amount:d.monthlyPayment});
+      save(); renderMain();
+    }
+  }
+  else if(act==='editexpense'){ openExpenseModal(el.dataset.id); }
+  else if(act==='delexpense'){ state.recurringExpenses = state.recurringExpenses.filter(e=>e.id!==el.dataset.id); save(); renderMain(); }
+  else if(act==='tasktoggle'){ const idx=parseInt(el.dataset.idx); if(log.tasks[idx]) log.tasks[idx].done=!log.tasks[idx].done; save(); renderMain(); }
+  else if(act==='deltask'){ log.tasks.splice(parseInt(el.dataset.idx),1); save(); renderMain(); }
+  else if(act==='rolltasks'){
+    const tomorrow = fmtDate(new Date(parseDate(currentDate).getTime()+86400000));
+    const tLog = ensureLog(tomorrow);
+    const remaining = [];
+    log.tasks.forEach(t=>{ if(t.done) remaining.push(t); else tLog.tasks.push({text:t.text, done:false, movedFrom:currentDate}); });
+    log.tasks = remaining;
+    save(); renderMain();
+  }
+  else if(act==='addfood'){
+    const fid = el.dataset.id; const f = state.foodDb.find(x=>x.id===fid);
+    const qtyEl = document.querySelector(`[data-qty="${fid}"]`);
+    const qty = parseFloat(qtyEl.value)||f.def;
+    const macros = foodMacros(f, qty);
+    log.food.push({name:f.name, qty, unit:f.unit, p: macros.p, c: macros.c});
+    save(); renderMain();
+  }
+  else if(act==='editfooditem'){ openFoodModal(el.dataset.id); }
+  else if(act==='delfood'){ log.food.splice(parseInt(el.dataset.idx),1); save(); renderMain(); }
+});
+document.getElementById('main').addEventListener('change', e=>{
+  const el = e.target.closest('[data-act="weightinput"]');
+  if(el){
+    const id=el.dataset.id, sub=el.dataset.sub;
+    const log = ensureLog(currentDate);
+    if(!log.weights[id]) log.weights[id]={};
+    log.weights[id][sub] = el.value;
+    save();
+  }
+});
+document.getElementById('main').addEventListener('input', e=>{
+  if(e.target.id==='foodSearch'){
+    foodSearchTerm = e.target.value;
+    renderFood();
+    const el = document.getElementById('foodSearch');
+    if(el){ el.focus(); el.setSelectionRange(el.value.length, el.value.length); }
+  }
+});
+document.getElementById('main').addEventListener('keydown', e=>{
+  if(e.key==='Enter' && e.target.id==='taskInput'){
+    e.preventDefault();
+    const btn = document.getElementById('addTaskBtn');
+    if(btn) btn.click();
+  }
+});
+document.getElementById('main').addEventListener('click', e=>{
+  if(e.target.id==='addFoodItemBtn'){ openFoodModal(null); }
+  if(e.target.id==='saveBodyBtn'){
+    const log = ensureLog(currentDate);
+    log.weightKg = parseFloat(document.getElementById('wInput').value)||null;
+    log.waist = parseFloat(document.getElementById('waistInput').value)||null;
+    log.hip = parseFloat(document.getElementById('hipInput').value)||null;
+    save(); renderMain();
+  }
+  if(e.target.id==='addTaskBtn'){
+    const inp = document.getElementById('taskInput');
+    const val = inp.value.trim();
+    if(val){ const log = ensureLog(currentDate); log.tasks.push({text:val, done:false}); save(); renderMain(); }
+  }
+  if(e.target.id==='addSpeakBtn'){
+    const topic = document.getElementById('speakTopic').value.trim();
+    const confidence = parseInt(document.getElementById('speakConfidence').value)||3;
+    if(topic){ const log = ensureLog(currentDate); log.speaking.push({topic, confidence}); save(); renderMain(); }
+  }
+  if(e.target.id==='addVocabBtn'){
+    const word = document.getElementById('vocabWord').value.trim();
+    const meaning = document.getElementById('vocabMeaning').value.trim();
+    if(word && meaning){ state.vocab.push({id:'vocab_'+Date.now(), word, meaning}); save(); renderMain(); }
+  }
+  if(e.target.id==='addDebtBtn'){ openDebtModal(null); }
+  if(e.target.id==='addExpenseBtn'){ openExpenseModal(null); }
+  if(e.target.id==='saveIncomeBtn'){
+    state.monthlyIncome = parseFloat(document.getElementById('incomeInput').value)||0;
+    save(); renderMain();
+  }
+  if(e.target.id==='savePcosBtn'){
+    const log = ensureLog(currentDate);
+    log.pcosLog.sleepHours = parseFloat(document.getElementById('pcosSleep').value);
+    if(isNaN(log.pcosLog.sleepHours)) log.pcosLog.sleepHours = null;
+    log.pcosLog.mood = document.getElementById('pcosMood').value;
+    log.pcosLog.note = document.getElementById('pcosNote').value.trim();
+    save(); renderMain();
+  }
+  if(e.target.id==='addFinBtn'){
+    const type = document.getElementById('finType').value;
+    const amount = parseFloat(document.getElementById('finAmount').value);
+    const note = document.getElementById('finNote').value.trim();
+    if(amount>0){ const log = ensureLog(currentDate); log.finance.push({type,amount,note}); save(); renderMain(); }
+  }
+  if(e.target.id==='saveSettingsBtn'){
+    state.settings.proteinTarget = parseFloat(document.getElementById('setProtein').value)||135;
+    state.settings.calorieTarget = parseFloat(document.getElementById('setCal').value)||1450;
+    save(); renderMain();
+  }
+  if(e.target.id==='saveIfBtn'){
+    state.settings.ifEatStart = document.getElementById('setIfStart').value || '09:00';
+    state.settings.ifEatHours = parseFloat(document.getElementById('setIfHours').value)||6;
+    save(); renderMain();
+  }
+  if(e.target.id==='restoreCloudBtn'){ restoreFromCloud(); }
+});
+document.getElementById('dateInput').addEventListener('change', e=>{ currentDate = e.target.value; renderMain(); });
+document.getElementById('fabBtn').addEventListener('click', ()=> openItemModal(null));
+
+/* ====================== INIT ====================== */
+renderTabs();
+renderMain();
+updateSavedIndicator();
+initCloud();
+</script>
+</body>
+</html>
+</html>
